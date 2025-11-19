@@ -1,0 +1,5 @@
+Test ID;Requirement ID;Title;Preconditions;Test steps;Expected result;Actual result;Status (Pass/Fail/Not run);Notes
+AT-001;REQ-001;Host can create a new session;App installed, user logged in as host;"1. Open the app
+2. Go to 'Create Session'
+3. Select at least one category and a daring level
+4. Confirm";A new session is created and visible in the host's session list.;;Not run;

@@ -1,0 +1,2 @@
+ID;Actor;Requirement (description);Priority (1-5);Type (Functional / Non-functional);SMART (Y/N);Category (one of the 12 course criteria, if applicable);Status (Planned / In progress / Done);Notes
+REQ-001;Host;The host must be able to create a new Truth or Drink session by selecting categories and a daring level (1-5 stars).;5;Functional;Y;Core functionality;Planned;
