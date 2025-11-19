@@ -5,6 +5,8 @@
         public App()
         {
             InitializeComponent();
+
+            MainPage = new AppShell(); // App start op LoginPage
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

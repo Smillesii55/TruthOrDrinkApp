@@ -1,25 +1,33 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Core.Interfaces;
+using Core.Services;
+using TruthOrDrinkApp.ViewModels;
+using TruthOrDrinkApp.Views;
 
-namespace TruthOrDrinkApp
+namespace TruthOrDrinkApp;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var builder = MauiApp.CreateBuilder();
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
-            return builder.Build();
-        }
+        // Services (Core)
+        builder.Services.AddSingleton<IAuthService, MockAuthService>();
+
+        // ViewModels
+        builder.Services.AddTransient<LoginViewModel>();
+
+        // Views
+        builder.Services.AddTransient<LoginPage>();
+
+        return builder.Build();
     }
 }

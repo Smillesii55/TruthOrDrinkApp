@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TruthOrDrinkApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:TruthOrDrinkApp.ViewModels"
+    Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <Grid Padding="24" RowDefinitions="Auto,*,Auto">
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0" Spacing="8">
+                <Label Text="Truth or Drink"
+                       FontSize="28"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" />
+                <Label Text="Student Edition"
+                       FontSize="14"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Form -->
+            <VerticalStackLayout Grid.Row="1" Spacing="12" VerticalOptions="CenterAndExpand">
+
+                <Entry Placeholder="Email"
+                       Text="{Binding Email}"
+                       Keyboard="Email" />
+
+                <Entry Placeholder="Password"
+                       Text="{Binding Password}"
+                       IsPassword="True" />
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   HorizontalOptions="Center" />
+
+                <Label Text="{Binding ErrorMessage}"
+                       TextColor="Red"
+                       IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+
+                <Button Text="Login"
+                        Command="{Binding LoginCommand}" />
+            </VerticalStackLayout>
+
+            <!-- Footer -->
+            <Label Grid.Row="2"
+                   Text="Dit is een schoolproject – niet voor productie 😉"
+                   FontSize="11"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,12,0,0" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
