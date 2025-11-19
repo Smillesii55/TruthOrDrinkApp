@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using System.Windows.Input;
 
+
 namespace TruthOrDrinkApp.ViewModels
 {
     public class LoginViewModel : BaseViewModel
@@ -10,6 +11,7 @@ namespace TruthOrDrinkApp.ViewModels
         private string _email;
         private string _password;
         private string _errorMessage;
+        private bool _hasError;
 
         public LoginViewModel(IAuthService authService)
         {
@@ -46,7 +48,19 @@ namespace TruthOrDrinkApp.ViewModels
         public string ErrorMessage
         {
             get => _errorMessage;
-            set => SetProperty(ref _errorMessage, value);
+            set
+            {
+                if (SetProperty(ref _errorMessage, value))
+                {
+                    HasError = !string.IsNullOrEmpty(value);
+                }
+            }
+        }
+
+        public bool HasError
+        {
+            get => _hasError;
+            set => SetProperty(ref _hasError, value);
         }
 
         public ICommand LoginCommand { get; }
@@ -71,11 +85,10 @@ namespace TruthOrDrinkApp.ViewModels
 
                 if (success)
                 {
-                    // TODO: Navigate to main/home page
-                    // For now just clear fields as proof-of-concept
+                    // TODO: navigate to home after login
                     Email = string.Empty;
                     Password = string.Empty;
-                    ErrorMessage = string.Empty;
+                    ErrorMessage = string.Empty; // zet HasError ook op false
                 }
                 else
                 {

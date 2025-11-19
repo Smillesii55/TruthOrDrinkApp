@@ -3,7 +3,6 @@
     x:Class="TruthOrDrinkApp.Views.LoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewmodels="clr-namespace:TruthOrDrinkApp.ViewModels"
     Title="{Binding Title}">
 
     <ContentPage.Content>
@@ -34,9 +33,10 @@
                                    IsVisible="{Binding IsBusy}"
                                    HorizontalOptions="Center" />
 
+                <!-- Hier: geen converter meer -->
                 <Label Text="{Binding ErrorMessage}"
                        TextColor="Red"
-                       IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+                       IsVisible="{Binding HasError}" />
 
                 <Button Text="Login"
                         Command="{Binding LoginCommand}" />
